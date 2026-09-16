@@ -6,3 +6,4 @@ metadata:
 data:
   TENANT_CONFIG_TABLE: "integration-test-tenant-configs"
   AWS_REGION: "us-east-1"
+  RUNNING_IN_K8S: "false"

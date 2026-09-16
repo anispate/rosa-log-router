@@ -6,3 +6,5 @@ metadata:
 data:
   TENANT_CONFIG_TABLE: "tenant-configurations"
   AWS_REGION: "us-east-1"
+  RUNNING_IN_K8S: "true"
+  PSK_SECRET_NAME: "tenant-config-api-psk"

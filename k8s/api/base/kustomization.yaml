@@ -8,6 +8,7 @@ resources:
 - deployment.yaml
 - service.yaml
 - configmap.yaml
+- network-policy.yaml
 
 labels:
 - includeSelectors: true

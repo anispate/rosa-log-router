@@ -13,6 +13,10 @@ spec:
       labels:
         app: tenant-config-api
     spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
       containers:
       - name: api
         image: public.ecr.aws/d1w4s4o1/rosa-logrouter/api:main
@@ -26,6 +30,11 @@ spec:
         - "0.0.0.0"
         - --port
         - "8080"
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
         env:
         - name: TENANT_CONFIG_TABLE
           valueFrom:
@@ -37,6 +46,16 @@ spec:
             configMapKeyRef:
               name: tenant-config-api-config
               key: AWS_REGION
+        - name: RUNNING_IN_K8S
+          valueFrom:
+            configMapKeyRef:
+              name: tenant-config-api-config
+              key: RUNNING_IN_K8S
+        - name: PSK_SECRET_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: tenant-config-api-config
+              key: PSK_SECRET_NAME
         ports:
         - containerPort: 8080
           name: http
