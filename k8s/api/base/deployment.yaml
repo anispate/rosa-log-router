@@ -16,15 +16,14 @@ spec:
       automountServiceAccountToken: false
       securityContext:
         runAsNonRoot: true
-        runAsUser: 1000
+        seccompProfile:
+          type: RuntimeDefault
       containers:
       - name: api
         image: public.ecr.aws/d1w4s4o1/rosa-logrouter/api:main
         imagePullPolicy: Always
         command:
-        - python3
-        - -m
-        - uvicorn
+        - /app/.venv/bin/uvicorn
         - src.app:app
         - --host
         - "0.0.0.0"
