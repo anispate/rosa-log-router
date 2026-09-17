@@ -13,6 +13,7 @@ spec:
       labels:
         app: tenant-config-api
     spec:
+      serviceAccountName: tenant-config-api
       automountServiceAccountToken: false
       securityContext:
         runAsNonRoot: true

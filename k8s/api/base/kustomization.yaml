@@ -5,6 +5,7 @@ metadata:
   name: api-base
 
 resources:
+- service-account.yaml
 - deployment.yaml
 - service.yaml
 - configmap.yaml

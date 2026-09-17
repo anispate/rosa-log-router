@@ -9,8 +9,20 @@ spec:
       app: tenant-config-api
   policyTypes:
   - Ingress
+  - Egress
   ingress:
   - from:
     - namespaceSelector:
         matchLabels:
           kubernetes.io/metadata.name: ocm-gateway
+  egress:
+  # DNS
+  - ports:
+    - port: 53
+      protocol: UDP
+    - port: 53
+      protocol: TCP
+  # AWS APIs (DynamoDB, Secrets Manager) over HTTPS
+  - ports:
+    - port: 443
+      protocol: TCP
